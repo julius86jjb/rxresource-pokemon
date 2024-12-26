@@ -1,0 +1,35 @@
+<p class="text-2xl">Selector de Pokémons</p>
+
+@if (isLoading()) {
+<div>... loading pokemons</div>
+} @else {
+<div>
+  <select class="border p-2 w-full" [(ngModel)]="selectedPokemon">
+    <option value="undefined" disabled selected>--Select a pokemon--</option>
+
+    @for (pokemon of pokemons(); track pokemon) {
+    <option [ngValue]="pokemon">{{ pokemon.name }}</option>
+    }
+  </select>
+</div>
+
+<div class="mt-2 text-right">
+  <button
+    class="p-1  border-2 border-blue-500"
+    (click)="onLoadNextPage()"
+  >
+    Next Page
+  </button>
+</div>
+
+<div class="mt-10">
+  Selected Pokemon:
+  <span class="text-blue-500 font-bold">{{ selectedPokemonName() }}</span>
+</div>
+
+<p class="mt-10">
+  Current Page:
+  <span class="text-blue-500 font-bold">{{ currentPage() + 1 }}</span>
+</p>
+
+}
